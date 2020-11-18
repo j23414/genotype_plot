@@ -12,7 +12,7 @@ computer.
 source("R/genotype_plot.R")
 
 # Install Dependencies
-# pkg_list = c("ggdendro","vcfR","ggplot2","tidyr","data.table")
+# pkg_list = c("ggdendro","vcfR","ggplot2","tidyr","data.table")   # cowplot
 # install.packages(pkg_list)
 ```
 
@@ -23,7 +23,7 @@ Input files and run function
 #VCF_FILE = "~/Desktop/2020-10-15/gatk_atlas/first-round_merged_snps-only_snp-only.pass-only.vcf"
 VCF_FILE = "input.vcf.gz"
 
-our_popmap = readr::read_delim("popmap.txt", delim="\t")
+our_popmap = readr::read_delim("popmap2.txt", delim="\t")  #<= check formatting here
 #> 
 #> ── Column specification ────────────────────────────────────────────────────────
 #> cols(
@@ -31,19 +31,19 @@ our_popmap = readr::read_delim("popmap.txt", delim="\t")
 #>   pop = col_character()
 #> )
 
-# Run function
-# Actual function run
+## Run function
+## Actual function run
 #new_plot <- genotype_plot(vcf = VCF_FILE,
 #                          chr = "chr1",
-#                          start = 0, #1e6,
-#                          end = 1e6,  #2e6
+#                          start = 0, #1e6,             #<= Probably need to adjust params here
+#                          end = 1e6,  #2e6             #<= 
 #                          popmap = our_popmap,
 #                          cluster = FALSE,
-#                          snp_label_size=1e5,
+#                          snp_label_size=1e5,          #<=
 #                          colour_scheme = c("#d4b9da","#e7298a","#980043"))
 ```
 
-Getting output
+Current output.
 
 
        *****       ***   vcfR   ***       *****
@@ -82,9 +82,10 @@ Getting output
     All variants processed
     Error in x@gt[i, j, drop = FALSE] : invalid subscript type 'list'
 
-Some kind of error, maybe some auto conversion of a data type.
+Some kind of error, maybe some auto conversion of a data type. Maybe a
+matrix is converted to list? Might be due to input file formatting.
 
-List of generated files
+List of generated files so far:
 
     # Input
     -rw-r--r--  1 jenchang  staff   9.4M Nov 17 20:00 input.vcf.gz
@@ -95,3 +96,9 @@ List of generated files
     # Output
     -rw-r--r--  1 jenchang  staff    49M Nov 17 20:26 gt_plot_tmp.vcf      # <= intermediate
     -rw-r--r--  1 jenchang  staff   2.9K Nov 17 20:31 ReproduceAttempt.md
+
+The `new_plots` is a list of plots. Which is sent to dendro and cowplot.
+
+``` r
+str(new_plot)
+```

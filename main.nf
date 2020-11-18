@@ -44,8 +44,13 @@ process genotype_plot {
                           cluster=FALSE,
                           snp_label_size=1e5,
                           colour_scheme=c("#d4b9da","#e7298a","#980043"))
+  # check structure
+  str(new_plot)
 
-  ggplot2::ggsave("plot.png", p = new_plot)
+  # Add plotting functions here (cowplot, ggdendro)
+  # p <- new_plot\$dendrogram .... rest of commands here
+
+  ggplot2::ggsave("plot.png", plot = p)
   """
 }
 
