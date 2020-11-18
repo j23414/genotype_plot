@@ -1,3 +1,7 @@
+**This repo is a modified version. Testing ease of nextflow conversion, for fun.**
+
+<hr />
+
 # Genotype Plot
 ## Visualise and cluster genotypes based on a VCF
 This function can be used to subset VCFs for regions and individuals of interest and produce high-quality figures for publications.
